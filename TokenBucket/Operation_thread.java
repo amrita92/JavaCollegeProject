@@ -1,44 +1,60 @@
 package TokenBucket;
-
 public class Operation_thread extends Thread
 {
 	Queue<packet> que1,que2;
 	Queue<Token> token;
 	Token t=new Token();
 	packet p=new packet();
-	Bucket b =new Bucket(20);
-	int j=0;
+	Bucket b;
 	
-    Operation_thread(Queue<packet> que1, Queue<packet> que2)
+    Operation_thread(Queue<packet> que1, Queue<packet> que2,Bucket b)
     {
      this.que1=que1;
      this.que2=que2;
+     this.b=b;
     }
     
     public void run()
     {
-      if(p.getTokens()>b.buc_size())
+      while(true)
       {
-	   System.out.println("No. of tokens greater than bucket size.");
-	   que1.dequeue();
-      }
-      while(que1!=null)	
-      {
-        que1.dequeue(p);
-        if(p.getTokens()>=b.count_tokens())
-        {   	   
-	     for(int i=0;i<b.count_tokens();i++)
+    	try
+    	{
+    		
+        p=que1.dequeue();       
+        if(b.count_tokens()>=p.getTokens())
+        {
+        	
+	     for(int i=0;i<=b.count_tokens();i++)
 	     {
-	       System.out.println("Token "+j+"is deleted:"+token.dequeue()); 
-	     }	     
+	       b.delete_tokens();
+	       System.out.println("Token "+i+" is deleted:"); 
+	     }
+	     
 	     que2.enqueue(p);
-	     que1.notify(); 
-        }       
-        else if(p.getTokens()<b.count_tokens())
+	     System.out.println("packet is added to Q2");
+	     
+        }
+        
+        else if(b.count_tokens()<p.getTokens())
         {
 	     que1.enqueue(p);
-        }	
+	     System.out.println("packet is added back to Q1.");
+        }
+        
+	  Thread.sleep(1000);
+	} 
+    	
+    	 catch (InterruptedException e)
+    	 {
+		
+	     e.printStackTrace();
+	 }
       }
       
+}
+
+}
+ 
   }
 }
