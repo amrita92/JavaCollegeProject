@@ -1,5 +1,3 @@
-package TokenBucket;
-
 public class Bucket
 {
   Queue<Token> token;
@@ -28,3 +26,6 @@ public class Bucket
   }
   
 }
+
+  
+  
