@@ -1,10 +1,10 @@
 package TokenBucket;
 
-public class packet_thread extends Thread
+	public class packet_thread extends Thread
 	{ 
-		int i=0;
-		Queue<packet> que = new Queue<packet>();
+		Queue<packet> que;
 		packet p=new packet();	
+		private int LAMBDA=1000;
 		packet_thread(Queue<packet> que)
 		{
 			this.que=que;
@@ -14,18 +14,19 @@ public class packet_thread extends Thread
 	  	    {
 	       	while(true)
 	    	{
-	        p.setTokens(5);
+	        p.setTokens(2);
 	    	que.enqueue(p);
 	    	System.out.println("Packet is added in queue_one:"+p.getId());
 	    	try 
 	    	{
-				sleep(1000);
-	        }
+				sleep(LAMBDA);
+			}
 	    	catch (InterruptedException e)
 	    	{
 				e.printStackTrace();
-		}
+			}
 	    	}
 	    }
-	  
+		
 	}
+	
