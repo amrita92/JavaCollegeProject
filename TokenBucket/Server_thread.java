@@ -1,5 +1,3 @@
-package TokenBucket;
-
 public class Server_thread extends Thread
 {
   Queue<packet> que2;
@@ -44,4 +42,6 @@ public class Server_thread extends Thread
 	  }
   }
 }
+
+
 
