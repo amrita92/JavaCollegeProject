@@ -25,14 +25,6 @@ public class Queue<T>
 		return temp;
 		}
 		
-	}	
-	
-	int numOfElements()
-	{
-		return list.getSize();
 	}
-	
-}
-	
 
 
