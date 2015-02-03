@@ -245,16 +245,14 @@ public class LinkedListHelper<T>
 	}
 
 
-	// implementing methods of iterator.
-	private class LinkListHelperIterator<T> implements IteratorCustomized<T> 
-	{
+	// implementing methods of iterator
+
+	private class LinkListHelperIterator<T> implements IteratorCustomized<T> {
 
 		private Node Ref1;
-
-		public LinkListHelperIterator() 
-		{
-			Ref1 = getHead();
-		}
+       
+		public LinkListHelperIterator() {
+			Ref1 = getHead();		}
 
 		@Override
 		public boolean hasNext() 
@@ -269,63 +267,45 @@ public class LinkedListHelper<T>
 		@Override
 		public T next() 
 		{
-			if(Ref1!=null)
-		      return (T) Ref1.getNext();     
-			else
-			  return null;
-	    }
-          
+			T ob = (T)Ref1.getData();
+			Ref1=Ref1.getNext();
+			
+			return ob;
+			}
+
 		@Override
 		public void remove() 
 		{
 			// TODO Auto-generated method stub
 
 		}
-		  
-		public T iterator() 
+		public void iterate(int n)
 		{
-			// TODO Auto-generated method stub
-			return  (T) Ref1.getNext();
+			for(int i=0;i<n;++i)
+			{
+				Ref1=Ref1.getNext();
+			}
+            
 		}
 
-		@Override
-		public void iterate(int n) 
+		public T getdata()
 		{
-			// TODO Auto-generated method stub
-			 for(int i=0;i<n;i++)			 
-			 {
-				Ref1=Ref1.getNext(); 
-			 }
-		}
-
-		@Override
-		public T getdata() 
-		{
-			// TODO Auto-generated method stub
 			return (T) Ref1.getData();
 		}
 		
 	}
 
-	public IteratorCustomized<T> iterator()
-	{
-		// TODO Auto-generated method stub
-		return new LinkListHelperIterator<T>();
-	}
-	
 	public T getElement() 
 	{
-		Node Ref1 = null;
+		Node Ref1=getHead();
 		// TODO Auto-generated method stub
-		if(Ref1!=null) 
-		{
-			return  Ref1.getData();
-		}
+		if(Ref1!=null)
+			return (T) Ref1.getData();
 		return null;
-	}	
-	
-	
+	}
+
+	public IteratorCustomized<T> iterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
-
-
-
