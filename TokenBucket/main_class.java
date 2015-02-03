@@ -9,17 +9,16 @@ public class main_class
 		 Queue<Token> token=new Queue<Token>();
 		 Queue<packet> que2=new Queue<packet>();
 		 
-		 packet_thread P=new packet_thread(que1);
-		 Token_thread T=new Token_thread(token);
-		 Operation_thread O=new Operation_thread(que1,que2);
-		 Server_thread S=new Server_thread(que2);    
+		 Bucket b=new Bucket(20);
+		 packet_thread Packet=new packet_thread(que1);
+		 Token_thread Token=new Token_thread(token,b);
+		 Operation_thread Operation=new Operation_thread(que1,que2,b);
+		 Server_thread Server=new Server_thread(que2);    
 		 
-		 P.start();
-		 T.start();
-		 //Bucket b=new Bucket(20);
-		 //System.out.println(b.count_tokens());
-		 O.start();
-		 S.start();
-	     //d.start();
+		 Packet.start();
+		 Token.start();
+		 Operation.start();
+		 Server.start();     
+
 	}
-}  
+}    
