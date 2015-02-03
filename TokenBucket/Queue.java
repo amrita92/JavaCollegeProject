@@ -1,47 +1,38 @@
 package TokenBucket;
-
 public class Queue<T> 
 {
 	LinkedListHelper<T> list = new LinkedListHelper<T>();
-	packet p=new packet();
-    private int size=100;
-    private int count=0;
     
-    IteratorCustomized data_iterate=list.iterator();
+    IteratorCustomized data_iterate;
     
 	void enqueue(T data)
 	{
-		if(list.getSize()>size)
-			System.out.println("Queue is full.");
-		else
-		  list.AddAtEnd(data);
-		count++;
+		  list.AddAtEnd(data);	
 	}
+	
 	T dequeue()
-	{			
-
+	{				
+		data_iterate=list.iterator();
 		if(list.IsEmpty())
-			System.out.println("Queue is empty.");	
+		{
+			System.out.println("Queue is empty");
+			return null;
+		}
+		else
+		{
+		T temp=(T) data_iterate.getdata();
 		list.DelFirst();
-		count--;
-		  return (T) list.getElement();		
+		return temp;
+		}
+		
 	}	
-	T dequeue(T data)
-	{			
-
-		if(list.IsEmpty())
-			System.out.println("Queue is empty.");	
-		list.DelFirst();
-		  return (T) data_iterate.getdata();
-	}	
+	
 	int numOfElements()
 	{
 		return list.getSize();
 	}
-	void display()
-	{
-		System.out.println(p.getId());
-	}
 	
 }
+	
+
 
