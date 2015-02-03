@@ -1,22 +1,13 @@
-package TokenBucket;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
-//packet class
+
 public class packet 
-{   
-	private int id=0;
-	
-	private int packet_size=0;
-	private int count=0;	
-	Date created;
-    Date moved;
+{ 
+	private int id=0;	
+	Date created,moved;
 	private int tokens_required;
 	
 	packet()
 	{
 		created=new Date();
-		id=id+1;
 	}
 	public int getId()
 	{
@@ -43,3 +34,4 @@ public class packet
 		return moved;
 	}
 }
+
