@@ -1,4 +1,4 @@
-Token Bucket Filling
+## Token Bucket Filling
 
 The project uses multithreading feature of Java to demonstrate the token bucket filling.
 It uses Queue data structure to collect the tokens and seperate them in various threads. 
